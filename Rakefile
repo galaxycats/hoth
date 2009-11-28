@@ -5,11 +5,17 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "hoth"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Registry and deployment description abstraction for SOA-Services}
+    gem.description = <<-DESCRIPTION
+Creating a SOA requires a centralized location to define all services within the
+SOA. Furthermore you want to know where to deploy those services.
+DESCRIPTION
     gem.email = "dirk.breuer@gmail.com"
     gem.homepage = "http://github.com/railsbros/hoth"
     gem.authors = ["Dirk Breuer"]
+    gem.files = FileList["[A-Z]*.*", "{lib,test}/**/*"]
+
+    gem.add_dependency "activesupport"
     gem.add_development_dependency "rspec"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
