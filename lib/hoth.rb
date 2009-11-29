@@ -4,6 +4,7 @@ require 'active_support/inflector'
 
 require 'hoth/transport/hoth_transport'
 require 'hoth/transport/json_transport'
+require 'hoth/transport/bert_transport'
 
 require 'hoth/definition'
 require 'hoth/deployment_module'

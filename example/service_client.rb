@@ -21,7 +21,7 @@ event = Event.new(:name => "viewed", :count => 2)
 
 Hoth::Services.increment_statistics([statistic_object], event)
 
-puts Hoth::Services.statistic_of_cars([23]).inspect
+puts Hoth::Services.statistic_of_cars([23, 42, 303, 101]).inspect
 
 account = Account.new(
   :firstname => "Dirk",
@@ -30,4 +30,4 @@ account = Account.new(
   :company   => "Galaxy Cats" 
 )
 
-puts "Account: #{Hoth::Services.create_account(account)}"
+puts "Account ID: #{Hoth::Services.create_account(account)}"

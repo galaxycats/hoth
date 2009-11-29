@@ -10,11 +10,14 @@ module Hoth
     end
     
     def execute(*args)
+      transport = "hoth/transport/#{endpoint.transport_type}_transport".camelize.constantize.new(self)
+      
       if self.endpoint.is_local?
-        result = "#{self.name.to_s.camelize}Impl".constantize.send(:execute, *args)
+        decoded_params = transport.decode_params(*args)
+        puts "decoded_params: #{decoded_params.inspect}"
+        result = "#{self.name.to_s.camelize}Impl".constantize.send(:execute, *decoded_params)
         return return_value ? result : nil
       else
-        transport = "hoth/transport/#{endpoint.transport_type}_transport".camelize.constantize.new(self)
         transport.call_remote_with(*args)
       end
     end

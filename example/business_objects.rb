@@ -50,7 +50,11 @@ class Account
     @lastname  = attributes[:lastname]
     @contract  = attributes[:contract]
     @company   = attributes[:company]
+    @contract
   end
   
+  def to_serialize
+    [:firstname, :lastname, :contract, :company]
+  end
   
 end

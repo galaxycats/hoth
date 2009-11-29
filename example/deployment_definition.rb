@@ -1,6 +1,6 @@
 Hoth::ServiceDeployment.define do
   service_module :statistics_module do
-    env :development, {
+    env :test, {
       :endpoint => Hoth::Endpoint.new(
         :host => 'localhost',
         :port => 3000,
@@ -14,7 +14,7 @@ Hoth::ServiceDeployment.define do
   end
 
   service_module :accounts_module do
-    env :development, {
+    env :test, {
       :endpoint => Hoth::Endpoint.new(
         :host => 'localhost',
         :port => 9999,

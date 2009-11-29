@@ -21,27 +21,18 @@ end
 
 class StatisticOfCarsImpl
   def self.execute(ids)
-    puts "** EXECUTING IncrementStatisticsImpl"
-    puts "   ids: #{ids}"
-    return [StatisticData.new(:event => Event.new(:name => "viewed", :count => 101),
-                              :original_id => 300)]
+    puts "** EXECUTING StatisticOfCarsImpl"
+    puts "   ids: #{ids.inspect}"
+    
+    return ids.inject([]) do |data, id|
+      data << StatisticData.new(
+        :events       => [Event.new(:name => "viewed", :count => rand(666))],
+        :original_id => id
+      )
+    end
   end
 end
 
 app = lambda {|env| [200, {'Content-Type' => 'application/json'}, ""]}
 
 run Hoth::Providers::RackProvider.new(app)
-
-# class IncrementStatisticsImpl
-#   def self.execute(elements)
-#     elements.each do |element|
-#       Statistic.find_or_create_by_name(element).increment!(:count)
-#     end
-#   end
-# end
-# 
-# class StatisticForImpl
-#   def self.execute(element_names)
-#     Statistic.find_all_by_name(element_names)
-#   end
-# end

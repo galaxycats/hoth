@@ -22,6 +22,11 @@ module Hoth
         end
       end
       
+      def decode_params(params)
+        puts "params: #{params.inspect}"
+        JSON.parse(params)
+      end
+      
     end
   end
 end
