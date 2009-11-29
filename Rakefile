@@ -13,7 +13,7 @@ DESCRIPTION
     gem.email = "dirk.breuer@gmail.com"
     gem.homepage = "http://github.com/railsbros/hoth"
     gem.authors = ["Dirk Breuer"]
-    gem.files = FileList["[A-Z]*.*", "{lib,test}/**/*"]
+    gem.files = FileList["[A-Z]*.*", "{lib,spec}/**/*"]
 
     gem.add_dependency "activesupport"
     gem.add_development_dependency "rspec"

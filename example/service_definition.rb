@@ -11,5 +11,4 @@ Hoth::Services.define do
   service :create_account, :params => [:account],
                            :returns => [:account_id],
                            :endpoint => :accounts_module
-  
 end
