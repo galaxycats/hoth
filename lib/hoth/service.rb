@@ -14,7 +14,7 @@ module Hoth
       
       if self.endpoint.is_local?
         decoded_params = transport.decode_params(*args)
-        puts "decoded_params: #{decoded_params.inspect}"
+        Hoth::Logger.debug "decoded_params: #{decoded_params.inspect}"
         result = "#{self.name.to_s.camelize}Impl".constantize.send(:execute, *decoded_params)
         return return_value ? result : nil
       else
