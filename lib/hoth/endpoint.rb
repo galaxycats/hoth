@@ -18,7 +18,7 @@ module Hoth
     end
     
     def is_local?
-      ENV["LOCAL"] == "true" ? true : false
+      ENV["LOCAL"] == "true" ? true : false # make dynamic
     end
   end
 end

@@ -13,7 +13,9 @@ module Hoth
         
         if self.return_value
           case response
-          when Net::HTTPSuccess then JSON.parse(response.body)
+          when Net::HTTPSuccess
+            Hoth::Logger.debug "response.body: #{response.body}"
+            JSON.parse(response.body)
           else
             raise JSON.parse(response.body)
           end
@@ -23,7 +25,7 @@ module Hoth
       end
       
       def decode_params(params)
-        puts "params: #{params.inspect}"
+        Hoth::Logger.debug "Params we gonna send: #{params.inspect}"
         JSON.parse(params)
       end
       
