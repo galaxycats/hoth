@@ -13,3 +13,7 @@ require 'hoth/service'
 require 'hoth/service_deployment'
 require 'hoth/service_registry'
 require 'hoth/services'
+
+require 'hoth/util/logger'
+
+Hoth::Logger.init_logging!

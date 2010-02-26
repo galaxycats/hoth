@@ -9,13 +9,19 @@ module Hoth
       @return_value = args[:returns]
     end
     
+    def transport
+      @transport ||= "hoth/transport/#{endpoint.transport_type}_transport".camelize.constantize.new(self)
+    end
+    
+    def service_impl_class
+      @service_impl_class ||= "#{self.name.to_s.camelize}Impl".constantize
+    end
+    
     def execute(*args)
-      transport = "hoth/transport/#{endpoint.transport_type}_transport".camelize.constantize.new(self)
-      
       if self.endpoint.is_local?
         decoded_params = transport.decode_params(*args)
-        puts "decoded_params: #{decoded_params.inspect}"
-        result = "#{self.name.to_s.camelize}Impl".constantize.send(:execute, *decoded_params)
+        Hoth::Logger.debug "decoded_params: #{decoded_params.inspect}"
+        result = service_impl_class.send(:execute, *decoded_params)
         return return_value ? result : nil
       else
         transport.call_remote_with(*args)

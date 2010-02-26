@@ -1,18 +1,19 @@
 module Hoth
   class DeploymentModule
+    attr_accessor :name
 
     class Environment
-      attr_accessor :endpoint, :mongrel_start_port, :mongrel_servers
+      attr_accessor :endpoint, :deployment_options
       
-      def initialize(attributes)
+      def initialize(attributes = {})
         @endpoint           = attributes[:endpoint]
-        @mongrel_start_port = attributes[:mongrel_start_port]
-        @mongrel_servers    = attributes[:mongrel_servers]
+        @deployment_options = attributes[:deployment_options]
       end
     end
     
-    def initialize
+    def initialize(attributes = {})
       @environments = {}
+      @name = attributes[:name]
     end
     
     def env(env_name, options)
@@ -23,8 +24,8 @@ module Hoth
       @environments[env_name]
     end
     
-    def path(path)
-      @path = path
+    def path(path = nil)
+      path.nil? ? @path : @path = path
     end
 
   end
