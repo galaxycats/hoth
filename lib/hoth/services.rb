@@ -1,7 +1,7 @@
 module Hoth
   class Services
     def self.define(&block)
-      Definition.new.instance_eval(&block)
+      (@definition || Definition.new).instance_eval(&block)
     end
     
     def self.env
