@@ -16,8 +16,12 @@ module Hoth
       @name = attributes[:name]
     end
     
-    def env(env_name, options)
-      @environments[env_name] = Environment.new(options)
+    def env(*options)
+      attributes = options.pop
+      options.each do |env_name|
+        @environments[env_name] = Environment.new(attributes)
+      end
+      self
     end
     
     def [](env_name)

@@ -13,10 +13,14 @@ describe Hoth::DeploymentModule do
     env_specific_options = {}
     env_mock = mock("Hoth::DeploymentModule::Environment", :null_object => true)
     
-    Hoth::DeploymentModule::Environment.should_receive(:new).with(env_specific_options).and_return(env_mock)
+    Hoth::DeploymentModule::Environment.should_receive(:new).exactly(3).times.with(env_specific_options)
     
     deployment_module.env :test, env_specific_options
     deployment_module[:test].should equal(env_mock)
+    
+    deployment_module.env :staging, :production, env_specific_options
+    deployment_module[:staging].should equal(env_mock)
+    deployment_module[:production].should equal(env_mock)
   end
   
   it "should have a path pointing to the service root" do
