@@ -6,8 +6,10 @@ Hoth::ServiceDeployment.define do
         :port => 3000, # used
         :transport_type => :json # used
       ),
-      :mongrel_servers    => 2,
-      :mongrel_start_port => 9001
+      :deployment_options => {
+        :mongrel_servers    => 2,
+        :mongrel_start_port => 9001        
+      }
     }
 
     path "services/search_service"
@@ -19,8 +21,10 @@ Hoth::ServiceDeployment.define do
         :host => 'localhost',
         :port => 9999,
         :transport_type => :bert
-      ),
-      :ernie_port => 9999
+      )  ,
+      :deployment_options => {
+        :ernie_port => 9999       
+      }
     }
 
     path "services/account_service"
