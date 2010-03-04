@@ -17,5 +17,6 @@ require 'hoth/services'
 require 'hoth/util/logger'
 
 require 'hoth/extension/core/exception'
+require 'hoth/exceptions'
 
 Hoth::Logger.init_logging!
