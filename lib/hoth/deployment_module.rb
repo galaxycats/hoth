@@ -1,6 +1,6 @@
 module Hoth
   class DeploymentModule
-    attr_accessor :name
+    attr_accessor :name, :environments
 
     class Environment
       attr_accessor :endpoint, :deployment_options
@@ -17,15 +17,15 @@ module Hoth
     end
     
     def env(*options)
-      attributes = options.pop
+      attributes = Hash === options.last ? options.pop : {}
       options.each do |env_name|
-        @environments[env_name] = Environment.new(attributes)
+        @environments[env_name.to_sym] = Environment.new(attributes)
       end
       self
     end
     
     def [](env_name)
-      @environments[env_name]
+      @environments[env_name.to_sym]
     end
     
     def path(path = nil)
