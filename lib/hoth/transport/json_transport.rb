@@ -15,9 +15,9 @@ module Hoth
           case response
           when Net::HTTPSuccess
             Hoth::Logger.debug "response.body: #{response.body}"
-            JSON.parse(response.body)
+            JSON(response.body)["result"]
           else
-            raise JSON.parse(response.body)
+            raise JSON(response.body)
           end
         else
           response.is_a?(Net::HTTPSuccess) ? true : false

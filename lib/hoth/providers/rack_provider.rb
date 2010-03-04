@@ -15,7 +15,7 @@ module Hoth
 
           service_name   = req.params["name"]
           service_params = req.params["params"]
-          json_payload   = Hoth::Services.send(service_name, service_params).to_json
+          json_payload   = JSON({"result" => Hoth::Services.send(service_name, service_params)})
           
           [200, {'Content-Type' => 'application/json', 'Content-Length' => "#{json_payload.length}"}, json_payload]
         else
