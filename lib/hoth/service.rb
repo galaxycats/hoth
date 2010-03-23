@@ -14,7 +14,12 @@ module Hoth
     end
     
     def service_impl_class
-      @service_impl_class ||= "#{self.name.to_s.camelize}Impl".constantize
+      @service_impl_class_name ||= "#{self.name.to_s.camelize}Impl"
+      # in Rails development environment we cannot cache the class constant, because it gets unloaded, so you get 
+      # an "A copy of xxxImpl has been removed from the module tree but is still active!" error from ActiveSupport dependency mechanism
+      # TODO: Try to solve this problem
+      # TODO: get rid of these Rails dependencies
+      @service_impl_class_name.constantize
     end
     
     def execute(*args)
