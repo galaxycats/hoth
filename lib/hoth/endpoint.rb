@@ -1,10 +1,11 @@
 module Hoth
   class Endpoint
-    attr_accessor :host, :port, :transport_type
+    attr_accessor :host, :port, :module_name, :transport_type
 
     def initialize(attributes)
       @host           = attributes[:host]
       @port           = attributes[:port]
+      @module_name    = attributes[:module_name]
       @transport_type = attributes[:transport_type]
     end
 

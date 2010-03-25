@@ -9,6 +9,10 @@ module Hoth
         @endpoint           = attributes[:endpoint]
         @deployment_options = attributes[:deployment_options]
       end
+      
+      def propagate_module_name_to_endpoint(module_name)
+        @endpoint.module_name = module_name
+      end
     end
     
     def initialize(attributes = {})
@@ -20,6 +24,7 @@ module Hoth
       attributes = Hash === options.last ? options.pop : {}
       options.each do |env_name|
         @environments[env_name.to_sym] = Environment.new(attributes)
+        @environments[env_name.to_sym].propagate_module_name_to_endpoint(@name)
       end
       self
     end

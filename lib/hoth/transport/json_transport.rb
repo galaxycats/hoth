@@ -31,7 +31,7 @@ module Hoth
       end
       
       def decode_params(params)
-        Hoth::Logger.debug "Params we gonna send: #{params.inspect}"
+        Hoth::Logger.debug "Original params before decode: #{params.inspect}"
         JSON.parse(params)
       rescue JSON::ParserError => jpe
         raise TransportError.wrap(jpe)

@@ -44,4 +44,9 @@ describe Hoth::Endpoint do
     endpoint.is_local?.should_not be(nil)
   end
   
+  it "should should know the deployment module this endpoint is associated to" do
+    endpoint = Hoth::Endpoint.new(:module_name => "TestModule")
+    endpoint.module_name.should == "TestModule"
+  end
+  
 end

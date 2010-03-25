@@ -13,7 +13,7 @@ module Hoth
     end
 
     def service_module(module_name, &block)
-      deployment_module = DeploymentModule.new
+      deployment_module = DeploymentModule.new(:name => module_name)
       deployment_module.instance_eval(&block)
       @deployment_modules[module_name] = deployment_module
     end

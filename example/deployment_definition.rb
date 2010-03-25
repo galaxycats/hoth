@@ -8,7 +8,7 @@ Hoth::ServiceDeployment.define do
       ),
       :deployment_options => {
         :mongrel_servers    => 2,
-        :mongrel_start_port => 9001        
+        :mongrel_start_port => 9001
       }
     }
 
