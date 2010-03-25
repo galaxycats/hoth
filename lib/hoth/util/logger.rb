@@ -3,7 +3,7 @@ module Hoth
     class <<self
       
       def log_provider=(log_provider)
-        @@logger = log_provider
+        @log_provider = log_provider
       end
       
       def init_logging!
@@ -16,24 +16,30 @@ module Hoth
       end
       
       def debug(msg)
-        @@logger.debug msg
+        log_provider.debug msg
       end
       
       def info(msg)
-        @@logger.info msg
+        log_provider.info msg
       end
       
       def warn(msg)
-        @@logger.warn msg
+        log_provider.warn msg
       end
       
       def error(msg)
-        @@logger.error msg
+        log_provider.error msg
       end
       
       def fatal(msg)
-        @@logger.fatal msg
+        log_provider.fatal msg
       end
+      
+      private
+      
+        def log_provider
+          @log_provider || init_logging!
+        end
     end
         
   end

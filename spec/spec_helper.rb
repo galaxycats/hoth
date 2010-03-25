@@ -6,6 +6,8 @@ require 'hoth'
 require 'spec'
 require 'spec/autorun'
 
+Hoth::Services.env = "test"
+
 Spec::Matchers.define :string_matching do |regex|
   match do |string|
     string =~ regex

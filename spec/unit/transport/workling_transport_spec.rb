@@ -15,7 +15,7 @@ module Hoth
         service.should_receive(:name).and_return("TestService")
         service.should_receive(:endpoint).any_number_of_times.and_return(endpoint)
         
-        SimplePublisher::Topic.should_receive(:new).with("test_service_module_subscriber__test_service").and_return(topic = mock("Topic"))
+        SimplePublisher::Topic.should_receive(:new).with(:name => "test_service_module_subscribers__test_service").and_return(topic = mock("Topic"))
         
         SimplePublisher::StarlingConnection.should_receive(:new).with(:host => "localhost", :port => "22122").and_return(connection = mock("Connection"))
         
@@ -24,12 +24,20 @@ module Hoth
           :connection => connection
         ).and_return(publisher = mock("PublisherMock"))
 
-        args = [{:uid => "GC-123546"}]
+        uid = "GC-123546"
+        email_address = "test@example.com"
 
-        publisher.should_receive(:publish).with(*args)
+        publisher.should_receive(:publish).with([uid, email_address])
         
         transport = WorklingTransport.new(service)
-        transport.call_remote_with(*args)
+        transport.call_remote_with(uid, email_address)
+      end
+      
+      it "should decode params from a message wrapper" do
+        params_as_message = ["uid"]
+        
+        transport = WorklingTransport.new(mock("ServiceMock"))
+        transport.decode_params(*params_as_message).should == ["uid"]
       end
       
     end
