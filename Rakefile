@@ -10,15 +10,17 @@ begin
 Creating a SOA requires a centralized location to define all services within the
 SOA. Furthermore you want to know where to deploy those services.
 DESCRIPTION
-    gem.email = "dev@pkw.de"
-    gem.homepage = "http://github.com/pkwde/hoth"
-    gem.authors = ["pkw.de Development"]
+    gem.email = "dirk.breuer@gmail.com"
+    gem.homepage = "http://github.com/railsbros/hoth"
+    gem.authors = ["Dirk Breuer"]
     gem.files = FileList["[A-Z]*.*", "{lib,spec}/**/*"]
 
     gem.add_dependency "activesupport"
     gem.add_dependency "bertrpc"
     gem.add_dependency "json"
+    
     gem.add_development_dependency "rspec"
+    gem.add_development_dependency "simple_publisher"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
