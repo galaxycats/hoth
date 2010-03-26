@@ -11,11 +11,11 @@ module Hoth
     end
     
     def add_service(service)
-      @registry[service.name] = service
+      @registry[service.name.to_sym] = service
     end
     
     def locate_service(service_name)
-      @registry[service_name]
+      @registry[service_name.to_sym]
     end
     
     private

@@ -1,12 +1,10 @@
-ENV["LOCAL"] = "false"
-
 $:.unshift(File.join("..", "lib"))
 
 require 'rubygems'
 
 require 'hoth'
-require 'deployment_definition'
 require 'service_definition'
+require 'deployment_definition'
 require 'business_objects'
 
 statistic_object = StatisticsObject.new(

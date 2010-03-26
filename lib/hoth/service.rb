@@ -1,12 +1,15 @@
 module Hoth
   class Service
-    attr_accessor :name, :endpoint, :params, :return_value
+    attr_accessor :name, :params_arity, :return_value, :module, :endpoint
     
-    def initialize(name, args = {})
+    def initialize(name, &block)
       @name         = name
-      @endpoint     = ServiceDeployment.module(args[:endpoint])[Services.env].endpoint
-      @params       = args[:params]
-      @return_value = args[:returns]
+      @params_arity = block.arity
+      instance_eval(&block)
+    end
+    
+    def returns(return_value)
+      @return_value = return_value
     end
     
     def transport
@@ -22,8 +25,18 @@ module Hoth
       @service_impl_class_name.constantize
     end
     
+    def is_local?
+      begin
+        service_impl_class
+        true
+      rescue NameError => e
+        # no local implementation
+        false
+      end
+    end
+    
     def execute(*args)
-      if self.endpoint.is_local?
+      if self.is_local?
         decoded_params = transport.decode_params(*args)
         Hoth::Logger.debug "decoded_params: #{decoded_params.inspect}"
         result = service_impl_class.send(:execute, *decoded_params)
