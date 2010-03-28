@@ -12,21 +12,64 @@ Creating a SOA requires a centralized location to define all services within the
 
 ### service-definition
 
+This is how you define services:
+
     Hoth::Services.define do
   
-      service :increment_statistics do |statistic_objects, event|
-        returns :nothing
+      service :service_name do |first_param, second_param|
+        returns :descriptive_name
       end
-  
-      service :statistic_of_cars do |ids|
-        returns :statistic_datas
-      end
-  
-      service :create_account do |account|
-        returns :account_ids
-      end
-  
+        
     end
+
+This definition describes a service with a name, some parameters and its return value. The naming of the parameters is just for your understanding and will never be used again, so be descriptive. Same goes for the return value. The only exception is, if you want to assure that a service returns nil you can write
+  
+    returns :nothing
+    
+A service whith this return value will always return nil.
+
+### module-definition
+
+After defining all you services, you need to specify in which modules they live. Each module can be seen as a set of implemented services. Each module can have one or more endpoints. Here is how you define these modules with its endpoints and services:
+
+
+    Hoth::ServiceModules.define do
+
+      service_module :module_name do
+        env :development, :test do
+          endpoint :default,
+            :host => 'localhost',
+            :port => 3000,
+            :transport_type => :http
+
+          endpoint :bert,
+            :host => 'localhost',
+            :port => 9999,
+            :transport_type => :bert
+
+        end
+
+        env :production do
+          endpoint :default,
+            :host => '192.168.1.12',
+            :port => 3000,
+            :transport_type => :http
+
+          endpoint :bert,
+            :host => '192.168.1.15',
+            :port => 9999,
+            :transport_type => :bert
+
+        end
+    
+        add_service :first_service
+        add_service :second_service, :via => :bert
+      end
+      
+    end
+
+
+As you can see, it is possible to define different endpoints for different environments. Each endpoint has a host, a port and a transport-type. After defining your endpoints you can add your previously defined services to the module and define which endpoint they should use. If you do not specify an endpoint the :default endpoint will be used.
 
 ## Integrate in your project
 
