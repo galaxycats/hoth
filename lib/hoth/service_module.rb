@@ -24,9 +24,10 @@ module Hoth
       @name = attributes[:name]
     end
     
-    def env(env_name, &block)
-      @environments[env_name.to_sym] = Environment.new(&block)
-      self
+    def env(*env_names, &block)
+      env_names.each do |env_name|
+        @environments[env_name.to_sym] = Environment.new(&block)
+      end
     end
     
     def add_service(service_name, options = {})

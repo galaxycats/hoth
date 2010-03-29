@@ -14,6 +14,14 @@ describe Hoth::ServiceModule do
     service_module[:test].should be_a(Hoth::ServiceModule::Environment)
   end
   
+  it "should have multiple environments" do
+    service_module = Hoth::ServiceModule.new(:name => "service_module_name")
+    block = Proc.new {}
+    service_module.env :test, :development, &block
+    service_module[:test].should be_a(Hoth::ServiceModule::Environment)
+    service_module[:development].should be_a(Hoth::ServiceModule::Environment)
+  end
+  
   describe Hoth::ServiceModule::Environment do
 
     it "should have an endpoint" do
