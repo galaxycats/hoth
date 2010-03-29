@@ -44,6 +44,11 @@ module Hoth
     def load_module_definition
       require File.join(config_path, "module_definition")
     end
+    
+    def env
+      ENV["HOTH_ENV"] || (Object.const_defined?("Rails") ? Rails.env.to_sym : :development)
+    end
+    
   end
   
 end

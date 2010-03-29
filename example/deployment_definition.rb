@@ -1,4 +1,4 @@
-Hoth::ServiceDeployment.define do
+Hoth::ServiceModule.define do
   service_module :statistics_module do
     env :development do
       endpoint :default,

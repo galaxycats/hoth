@@ -31,8 +31,8 @@ module Hoth
     end
     
     def add_service(service_name, options = {})
-      unless self.environments[ServiceDeployment.env]
-        puts("no endpoint-definition for environment '#{ServiceDeployment.env}' and service '#{service_name}'")
+      unless self.environments[Hoth.env]
+        puts("no endpoint-definition for environment '#{Hoth.env}' and service '#{service_name}'")
         exit
       end
 
@@ -43,7 +43,7 @@ module Hoth
         exit
       end
       
-      service.endpoint = self.environments[ServiceDeployment.env][options[:via] || :default]
+      service.endpoint = self.environments[Hoth.env][options[:via] || :default]
     end
     
     def [](env_name)

@@ -33,7 +33,7 @@ A service whith this return value will always return nil. You can also specify `
 After defining all you services, you need to specify in which modules they live. Each module can be seen as a set of implemented services. Each module can have one or more endpoints. Here is how you define these modules with its endpoints and services:
 
 
-    Hoth::ServiceModules.define do
+    Hoth::Modules.define do
 
       service_module :module_name do
         env :development, :test do
