@@ -1,6 +1,7 @@
 require 'json'
 require 'net/http'
 
+
 module Hoth
   module Transport
     class HttpTransport < HothTransport     

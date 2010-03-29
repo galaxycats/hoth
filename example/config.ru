@@ -2,12 +2,12 @@ $:.unshift(File.join("..", "lib"))
 
 require 'rubygems'
 
+require 'rack'
 require 'hoth'
 require 'hoth/providers/rack_provider'
-require 'service_definition'
-require 'deployment_definition'
 require 'business_objects'
-require 'rack'
+
+Hoth.init!
 
 class IncrementStatisticsImpl
   def self.execute(statistic_objects, event)
