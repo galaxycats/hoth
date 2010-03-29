@@ -10,7 +10,7 @@ module Hoth
     class WorklingTransport < HothTransport
       
       def call_remote_with(*args)
-        topic      = SimplePublisher::Topic.new(:name => "#{endpoint.module_name.to_s.underscore}_subscribers__#{name.to_s.underscore}")
+        topic      = SimplePublisher::Topic.new(:name => "#{self.module.name.to_s.underscore}_subscribers__#{name.to_s.underscore}")
         connection = SimplePublisher::StarlingConnection.new(:host => endpoint.host, :port => endpoint.port)
 
         publisher = SimplePublisher::Publisher.new(:topic => topic, :connection => connection)

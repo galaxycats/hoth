@@ -1,6 +1,6 @@
 module Hoth
   class Service
-    attr_accessor :name, :params_arity, :return_value, :module, :endpoint
+    attr_accessor :name, :params_arity, :return_value, :module
     
     def initialize(name, &block)
       @name         = name
@@ -42,6 +42,14 @@ module Hoth
     
     def return_nothing?
       return_value == :nothing || return_value == :nil || return_value == nil
+    end
+    
+    def via_endpoint(via = nil)
+      @via_endpoint = via || :default
+    end
+    
+    def endpoint
+      @endpoint ||= self.module[Hoth.env][@via_endpoint]
     end
   end
 end

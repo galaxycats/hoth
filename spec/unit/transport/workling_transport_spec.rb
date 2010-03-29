@@ -7,13 +7,16 @@ module Hoth
       
       it "should send publish a message via SimplePublisher" do
         endpoint = mock("EndpointMock")
-        endpoint.should_receive(:module_name).and_return("TestServiceModule")
         endpoint.should_receive(:host).and_return("localhost")
         endpoint.should_receive(:port).and_return("22122")
+        
+        service_module = mock("ServiceModule")
+        service_module.should_receive(:name).and_return("TestServiceModule")
         
         service = mock("ServiceMock")
         service.should_receive(:name).and_return("TestService")
         service.should_receive(:endpoint).any_number_of_times.and_return(endpoint)
+        service.should_receive(:module).any_number_of_times.and_return(service_module)
         
         SimplePublisher::Topic.should_receive(:new).with(:name => "test_service_module_subscribers__test_service").and_return(topic = mock("Topic"))
         

@@ -43,7 +43,8 @@ module Hoth
         exit
       end
       
-      service.endpoint = self.environments[Hoth.env][options[:via] || :default]
+      service.module = self
+      service.via_endpoint(options[:via])
     end
     
     def [](env_name)
