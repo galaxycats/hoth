@@ -11,7 +11,7 @@ require 'hoth/service_definition'
 require 'hoth/service_module'
 require 'hoth/endpoint'
 require 'hoth/service'
-require 'hoth/service_deployment'
+require 'hoth/modules'
 require 'hoth/service_registry'
 require 'hoth/services'
 
@@ -46,7 +46,11 @@ module Hoth
     end
     
     def env
-      ENV["HOTH_ENV"] || (Object.const_defined?("Rails") ? Rails.env.to_sym : :development)
+      @env || ENV["HOTH_ENV"] || (Object.const_defined?("Rails") ? Rails.env.to_sym : :development)
+    end
+    
+    def env=(env)
+      @env = env.to_sym
     end
     
   end
