@@ -2,20 +2,29 @@ require 'spec_helper'
 
 describe Hoth do
   
-  it "should know its environment" do
-    Hoth.env.should equal(:test)
-    
-    # special env
-    Hoth.env = "special_env"
-    Hoth.env.should equal(:special_env)
-    
-    # default
-    Hoth.instance_variable_set("@env", nil)
+  before(:each) do
+    @old_hoth_env = Hoth.env
+    Hoth.instance_variable_set "@env", nil
+  end
+  
+  after(:each) do
+    Hoth.env = @old_hoth_env
+  end
+  
+  it "should set the environment explicitly" do
+    Hoth.env = :test
+    Hoth.env.should == :test
+  end
+  
+  it "should default to :development if no environment is set" do
     Hoth.env.should equal(:development)
-    
-    # get Rails.env
-    class Rails; def self.env; :production; end;end
+  end
+  
+  it "should return the Rails env if Rails is available" do
+    module Rails; end
+    Rails.should_receive(:env).and_return(:production)
     Hoth.env.should equal(:production)
+    Object.send :remove_const, :Rails
   end
   
 end
