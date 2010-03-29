@@ -18,10 +18,6 @@ module Hoth
     
     def impl_class
       @impl_class_name ||= "#{self.name.to_s.camelize}Impl"
-      # in Rails development environment we cannot cache the class constant, because it gets unloaded, so you get 
-      # an "A copy of xxxImpl has been removed from the module tree but is still active!" error from ActiveSupport dependency mechanism
-      # TODO: Try to solve this problem
-      # TODO: get rid of these Rails dependencies
       begin
         @impl_class_name.constantize
       rescue NameError => e
@@ -38,10 +34,14 @@ module Hoth
       if self.is_local?
         decoded_params = transport.decode_params(*args)
         result = impl_class.send(:execute, *decoded_params)
-        return return_value ? result : nil
+        return return_nothing? ? nil : result
       else
         transport.call_remote_with(*args)
       end
+    end
+    
+    def return_nothing?
+      return_value == :nothing || return_value == :nil || return_value == nil
     end
   end
 end

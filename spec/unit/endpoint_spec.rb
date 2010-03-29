@@ -39,11 +39,6 @@ describe Hoth::Endpoint do
     json_endpoint.should_not equal(bert_endpoint)
   end
   
-  it "should know if it is local or not" do
-    endpoint = Hoth::Endpoint.new({})
-    endpoint.is_local?.should_not be(nil)
-  end
-  
   it "should should know the deployment module this endpoint is associated to" do
     endpoint = Hoth::Endpoint.new(:module_name => "TestModule")
     endpoint.module_name.should == "TestModule"

@@ -20,4 +20,30 @@ require 'hoth/util/logger'
 require 'hoth/extension/core/exception'
 require 'hoth/exceptions'
 
-Hoth::Logger.init_logging!
+module Hoth
+  
+  class <<self
+    def init!
+      load_service_definition
+      load_module_definition
+      Logger.init_logging!
+    end
+  
+    def config_path
+      @config_path || "config/"
+    end
+    
+    def config_path=(config_path)
+      @config_path = config_path
+    end
+    
+    def load_service_definition
+      require File.join(config_path, "service_definition")
+    end
+
+    def load_module_definition
+      require File.join(config_path, "module_definition")
+    end
+  end
+  
+end

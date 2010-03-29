@@ -1,4 +1,4 @@
-# hoth
+# Hoth
 
 Creating a SOA requires a centralized location to define all services within the SOA. Furthermore you want to know where those services live.
 
@@ -10,7 +10,7 @@ Creating a SOA requires a centralized location to define all services within the
 
 ## Define services and modules
 
-### service-definition
+### Service-Definition
 
 This is how you define services:
 
@@ -26,9 +26,9 @@ This definition describes a service with a name, some parameters and its return 
   
     returns :nothing
     
-A service whith this return value will always return nil.
+A service whith this return value will always return nil. You can also specify `:nil`, with the same result.
 
-### module-definition
+### Module-Definition
 
 After defining all you services, you need to specify in which modules they live. Each module can be seen as a set of implemented services. Each module can have one or more endpoints. Here is how you define these modules with its endpoints and services:
 
@@ -73,17 +73,12 @@ As you can see, it is possible to define different endpoints for different envir
 
 ## Integrate in your project
 
-### Rails 
-
-Just add the definitions from above to your initializers, for example in these two files:
-
-  * initializers/service_definition.rb
-  * initializers/module_definition.rb
-
-### Other
-
-Add the definitions from above to your code, so that they are executed at startup. It is very important, that the service-definitions get loaded BEFORE the module-definitions are included.
-
+Just execute current code (in rails you can add this line to an initializer):
+    
+    Hoth.init!
+    
+By default, Hoth looks for the files service_definition and module_definition in the config-Directory (`./config`). If you need to load these files from another place, just set `Hoth.config_path` to your needs.
+    
 ## Note on Patches/Pull Requests
  
 * Fork the project.

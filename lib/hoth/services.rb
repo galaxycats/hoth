@@ -12,8 +12,6 @@ module Hoth
       end
       
       def method_missing(meth, *args, &blk)
-        puts "meth: #{meth}"
-        puts "ServiceRegistry.locate_service(meth): #{ServiceRegistry.locate_service(meth)}"
         if _service = ServiceRegistry.locate_service(meth)
           _service.execute(*args)
         else

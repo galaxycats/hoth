@@ -17,9 +17,5 @@ module Hoth
     def to_url
       "http://#{@host}:#{@port}/execute"
     end
-    
-    def is_local?
-      ENV["LOCAL"] == "true" ? true : false # make dynamic
-    end
   end
 end
