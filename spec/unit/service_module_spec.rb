@@ -42,7 +42,12 @@ module Hoth
       it "should have an endpoint" do
         endpoint_mock = mock("Endpoint", :null_object => true)
       
-        endpoint_block = Proc.new { endpoint :development, {} }
+        endpoint_block = Proc.new do
+          endpoint :development do
+            host 'localhost'
+          end
+        end
+        
         env = ServiceModule::Environment.new(&endpoint_block)      
         env[:development].should_not be(nil)
       end

@@ -10,8 +10,8 @@ module Hoth
         instance_eval(&block)
       end
       
-      def endpoint(endpoint_name, options)
-        @endpoints[endpoint_name.to_sym] = Endpoint.new(options)
+      def endpoint(endpoint_name, &block)
+        @endpoints[endpoint_name.to_sym] = Endpoint.new(&block)
       end
       
       def [](endpoint_name)
