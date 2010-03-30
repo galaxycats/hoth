@@ -38,28 +38,28 @@ After defining all you services, you need to specify in which modules they live.
       service_module :module_name do
         env :development, :test do
           endpoint :default do
-            host 'localhost',
-            port 3000,
+            host 'localhost'
+            port 3000
             transport_type :http
           end
 
           endpoint :bert do
-            host 'localhost',
-            port 9999,
+            host 'localhost'
+            port 9999
             transport_type :bert
           end
         end
 
         env :production do
           endpoint :default do
-            host '192.168.1.12',
-            port 3000,
+            host '192.168.1.12'
+            port 3000
             transport_type :http
           end
 
           endpoint :bert do
-            host '192.168.1.15',
-            port 9999,
+            host '192.168.1.15'
+            port 9999
             transport_type :bert
           end
         end
