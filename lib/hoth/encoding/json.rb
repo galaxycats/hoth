@@ -1,6 +1,28 @@
+require 'json'
+
 module Hoth
   module Encoding
-    class Json < Base
+    class Json
+      
+      class <<self
+        def encode(string)
+          string.to_json
+        end
+
+        # TODO move to encoder class
+        def decode(string)
+          begin
+            Hoth::Logger.debug "Original params before decode: #{string.inspect}"
+            JSON.parse(string)
+          rescue JSON::ParserError => jpe
+            raise EncodingError.wrap(jpe)
+          end
+        end
+        
+        def content_type
+          "application/json"
+        end
+      end
       
     end
   end

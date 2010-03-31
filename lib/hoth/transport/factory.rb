@@ -5,7 +5,7 @@ module Hoth
       POSSIBLE_TRANSPORTS = {
         :json_via_http => {
           :transport_class => Transport::Http,
-          :encoding_class => Encoding::Json
+          :encoder => Encoding::Json
         },
         :http => :json_via_http
       }
@@ -20,7 +20,7 @@ module Hoth
         def self.new_transport_with_encoding(transport_name, service)
           if POSSIBLE_TRANSPORTS[transport_name.to_sym]
             if POSSIBLE_TRANSPORTS[transport_name.to_sym].kind_of?(Hash)
-              POSSIBLE_TRANSPORTS[transport_name.to_sym][:transport_class].new(self, :encoding_class => POSSIBLE_TRANSPORTS[transport_name.to_sym][:encoding_class])
+              POSSIBLE_TRANSPORTS[transport_name.to_sym][:transport_class].new(service, :encoder => POSSIBLE_TRANSPORTS[transport_name.to_sym][:encoder])
             else
               new_transport_with_encoding(POSSIBLE_TRANSPORTS[transport_name.to_sym], service)
             end

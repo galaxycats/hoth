@@ -7,7 +7,6 @@ require 'hoth/transport/http'
 require 'hoth/transport/bert'
 require 'hoth/transport/workling'
 
-require 'hoth/encoding/base'
 require 'hoth/encoding/json'
 
 # must be loaded after alls transports and all encodings

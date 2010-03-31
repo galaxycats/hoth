@@ -22,7 +22,13 @@ module Hoth
         [:name, :module, :endpoint, :params, :return_nothing?].each do |method|
           transport.send(method)
         end
-        
+      end
+      
+      it "should have an encoder" do
+        service = mock("ServiceMock")
+        encoder = mock("EncoderMock")
+        transport = Base.new(service, :encoder => encoder)
+        transport.encoder.should be(encoder)
       end
             
     end

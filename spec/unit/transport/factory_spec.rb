@@ -13,13 +13,13 @@ module Hoth
       it "should create a new transport instance with encoding from a transport name" do
         transport = Factory.send(:new_transport_with_encoding, :json_via_http, mock("ServiceMock"))
         transport.should be_kind_of(Transport::Http)
-        transport.encoding_class.should == Encoding::Json
+        transport.encoder.should == Encoding::Json
       end
       
       it "should create a new transport instance with encoding from a transport alias" do
         transport = Factory.send(:new_transport_with_encoding, :http, mock("ServiceMock"))
         transport.should be_kind_of(Transport::Http)
-        transport.encoding_class.should == Encoding::Json
+        transport.encoder.should == Encoding::Json
       end
       
       it "should raise an exception if transport name does not exist" do

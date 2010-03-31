@@ -1,4 +1,3 @@
-require 'json'
 require 'net/http'
 
 module Hoth
@@ -16,23 +15,15 @@ module Hoth
         end
       end
       
-      # TODO move to encoder class
-      def decode_params(params)
-        Hoth::Logger.debug "Original params before decode: #{params.inspect}"
-        JSON.parse(params)
-      rescue JSON::ParserError => jpe
-        raise TransportError.wrap(jpe)
-      end
-      
       def handle_response(response)
         case response
         when Net::HTTPSuccess
           Hoth::Logger.debug "response.body: #{response.body}"
-          JSON.parse(response.body)["result"]
+          encoder.decode(response.body)["result"]
         when Net::HTTPServerError
           begin
             Hoth::Logger.debug "response.body: #{response.body}"
-            raise JSON.parse(response.body)["error"]
+            raise encoder.decode(response.body)["error"]
           rescue JSON::ParserError => jpe
             raise TransportError.wrap(jpe)
           end
@@ -45,7 +36,7 @@ module Hoth
         uri = URI.parse(self.endpoint.to_url)
         return Net::HTTP.post_form(uri,
           'name'   => self.name.to_s,
-          'params' => payload.to_json # TODO substitute with Encoder class
+          'params' => encoder.encode(payload)
         )
       end
       

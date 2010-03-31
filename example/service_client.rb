@@ -22,11 +22,11 @@ Hoth::Services.increment_statistics([statistic_object], event)
 
 puts Hoth::Services.statistic_of_cars([23, 42, 303, 101]).inspect
 
-account = Account.new(
-  :firstname => "Dirk",
-  :lastname  => "Breuer",
-  :contract  => "Platinum",
-  :company   => "Galaxy Cats" 
-)
-
-puts "Account ID: #{Hoth::Services.create_account(account)}"
+# account = Account.new(
+#   :firstname => "Dirk",
+#   :lastname  => "Breuer",
+#   :contract  => "Platinum",
+#   :company   => "Galaxy Cats"
+# )
+# 
+# puts "Account ID: #{Hoth::Services.create_account(account)}"

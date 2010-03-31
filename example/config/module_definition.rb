@@ -17,13 +17,13 @@ Hoth::Modules.define do
       endpoint :default do
         host 'localhost'
         port 3000
-        transport_type :http
+        transport :http
       end
     
       endpoint :bert do
         host 'localhost'
         port 9999
-        transport_type :bert
+        transport :bert
       end
     end
     
