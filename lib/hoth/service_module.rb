@@ -31,17 +31,11 @@ module Hoth
     end
     
     def add_service(service_name, options = {})
-      unless self.environments[Hoth.env]
-        puts("no endpoint-definition for environment '#{Hoth.env}' and service '#{service_name}'")
-        exit
-      end
+      raise HothException.new("no endpoint-definition for environment '#{Hoth.env}' and service '#{service_name}'") unless self.environments[Hoth.env]
 
       service = ServiceRegistry.locate_service(service_name.to_sym)
 
-      unless service
-        puts("tried to add service '#{service_name}' but was not defined by service-definition")
-        exit
-      end
+      raise HothException.new("tried to add service '#{service_name}' but was not defined by service-definition") unless service
       
       service.module = self
       service.via_endpoint(options[:via])
