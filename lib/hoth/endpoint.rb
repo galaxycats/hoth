@@ -1,6 +1,6 @@
 module Hoth
   class Endpoint
-    attr_accessor :host, :port, :module_name, :transport_type
+    attr_accessor :host, :port, :module_name, :transport
     
     class ConfigEvaluator
       attr_reader :endpoint
@@ -9,7 +9,7 @@ module Hoth
         instance_eval(&block)
       end
       
-      [:host, :port, :module_name, :transport_type].each do |endpoint_attribute|
+      [:host, :port, :module_name, :transport].each do |endpoint_attribute|
         define_method endpoint_attribute do |value|
           endpoint.send("#{endpoint_attribute}=", value)
         end
@@ -23,5 +23,6 @@ module Hoth
     def to_url
       "http://#{@host}:#{@port}/execute"
     end
+    
   end
 end

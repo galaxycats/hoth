@@ -2,10 +2,16 @@ require 'singleton'
 
 require 'active_support/inflector'
 
-require 'hoth/transport/hoth_transport'
-require 'hoth/transport/http_transport'
-require 'hoth/transport/bert_transport'
-require 'hoth/transport/workling_transport'
+require 'hoth/transport/base'
+require 'hoth/transport/http'
+require 'hoth/transport/bert'
+require 'hoth/transport/workling'
+
+require 'hoth/encoding/base'
+require 'hoth/encoding/json'
+
+# must be loaded after alls transports and all encodings
+require 'hoth/transport/factory'
 
 require 'hoth/service_definition'
 require 'hoth/service_module'

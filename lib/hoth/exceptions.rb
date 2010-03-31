@@ -10,4 +10,5 @@ module Hoth
   end
 
   class TransportError < HothException; end
+  class TransportFactoryException < HothException; end
 end

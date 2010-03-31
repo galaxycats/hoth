@@ -14,7 +14,7 @@ module Hoth
               mod(service_name) do
                 fun(:execute) do |*args|
                   return_value = begin
-                    Hoth::Transport::BertTransport::TuplePreparer.prepare(Hoth::Services.send(service_name, *args))
+                    Hoth::Transport::Bert::TuplePreparer.prepare(Hoth::Services.send(service_name, *args))
                   rescue Exception => e
                     Ernie.log %Q{An Exception occured: #{e.message} -- #{e.backtrace.join("\n\t")}}
                     false

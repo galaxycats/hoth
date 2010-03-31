@@ -4,7 +4,7 @@ Hoth::Modules.define do
       endpoint :default do
         host 'localhost'
         port 3000
-        transport_type :http
+        transport :json_via_http
       end
     end
     

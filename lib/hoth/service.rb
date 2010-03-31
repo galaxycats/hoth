@@ -13,7 +13,7 @@ module Hoth
     end
     
     def transport
-      @transport ||= "hoth/transport/#{endpoint.transport_type}_transport".camelize.constantize.new(self)
+      @transport ||= Transport::Factory.create(endpoint.transport, self)
     end
     
     def impl_class
