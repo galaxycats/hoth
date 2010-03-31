@@ -1,4 +1,4 @@
-# require 'activesupport'
+require 'active_support'
 
 class StatisticsObject
   attr_accessor :id, :owner_id, :statistic_type, :timestamp, :group_condition

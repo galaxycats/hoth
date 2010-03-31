@@ -14,7 +14,7 @@ module Hoth
       service = ServiceRegistry.locate_service(service_name)
       service.should_not be(nil)
       service.params_arity.should be(1)
-      service.return_value.should be(:nothing)
+      service.return_nothing?.should be(true)
     end
   
   end

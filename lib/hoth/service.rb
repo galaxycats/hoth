@@ -1,6 +1,6 @@
 module Hoth
   class Service
-    attr_accessor :name, :params_arity, :return_value, :module
+    attr_accessor :name, :params_arity, :module
     
     def initialize(name, &block)
       @name         = name
@@ -32,8 +32,9 @@ module Hoth
     
     def execute(*args)
       if self.is_local?
-        decoded_params = transport.decode_params(*args)
-        result = impl_class.send(:execute, *decoded_params)
+        # decoded_params = transport.decode_params(*args)
+        # result = impl_class.send(:execute, *decoded_params)
+        result = impl_class.send(:execute, *args)
         return return_nothing? ? nil : result
       else
         transport.call_remote_with(*args)
@@ -41,7 +42,7 @@ module Hoth
     end
     
     def return_nothing?
-      return_value == :nothing || return_value == :nil || return_value == nil
+      [:nothing, :nil, nil].include? @return_value
     end
     
     def via_endpoint(via = nil)

@@ -4,7 +4,6 @@ rescue LoadError
   STDERR.puts "You need the simple_publisher gem if you want to use Workling/Starling transport."
 end
 
-
 module Hoth
   module Transport
     

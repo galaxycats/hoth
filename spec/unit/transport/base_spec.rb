@@ -16,10 +16,10 @@ module Hoth
         service.should_receive(:module)
         service.should_receive(:endpoint)
         service.should_receive(:params)
-        service.should_receive(:return_value)
+        service.should_receive(:return_nothing?)
         transport = Base.new(service)
         
-        [:name, :module, :endpoint, :params, :return_value].each do |method|
+        [:name, :module, :endpoint, :params, :return_nothing?].each do |method|
           transport.send(method)
         end
         

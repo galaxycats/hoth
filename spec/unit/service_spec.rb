@@ -2,7 +2,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'spec_helper'))
 
 class TestServiceImpl
   def self.execute(param1, param2)
-    
   end
 end
 
@@ -16,7 +15,7 @@ module Hoth
       service = Service.new("TestService", &service_block)
 
       service.params_arity.should be(3)
-      service.return_value.should be(:some_data)
+      service.return_nothing?.should be(false)
     end
     
     it "should know its service-impl class" do
@@ -26,15 +25,22 @@ module Hoth
     
     it "should know that its service-impl class is not available" do
       service = Service.new("TestServiceWithoutImplClass") {}
-      service.impl_class
+      service.impl_class.should be(false)
+    end
+    
+    it "should know if it is local or not based on Impl-Class availability" do
+      service = Service.new("TestServiceWithoutImplClass") {}
+      service.is_local?.should be(false)
+
+      service = Service.new("test_service") {}
+      service.is_local?.should be(true)
     end
     
     it "should execute the service stub locally if its impl-class was found" do
       service = Service.new("test_service") { |p1, p2| returns :nothing }
       
-      service.should_receive(:transport).and_return(transport = mock("TransportMock"))
-      transport.should_receive(:decode_params).with(:arg1, :arg2).and_return(decoded_params = mock("DecodedParamsMock"))
-      service.impl_class.should_receive(:execute).with(decoded_params)
+      service.should_receive(:is_local?).and_return(true)
+      service.impl_class.should_receive(:execute).with(:arg1, :arg2)
       
       service.execute(:arg1, :arg2)
     end
@@ -42,6 +48,7 @@ module Hoth
     it "should call the remote service if impl-class does not exist" do
       service = Service.new("test_service_without_impl") { |p1, p2| returns :nothing }
       
+      service.should_receive(:is_local?).and_return(false)
       service.should_receive(:transport).and_return(transport = mock("TransportMock"))
       transport.should_receive(:call_remote_with).with(:arg1, :arg2)
       

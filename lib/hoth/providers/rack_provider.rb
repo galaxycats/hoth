@@ -16,7 +16,11 @@ module Hoth
 
             service_name   = req.params["name"]
             service_params = req.params["params"]
-            json_payload   = JSON({"result" => Hoth::Services.send(service_name, service_params)})
+            # TODO make this independent of JSON transport and figure out which transport should be used
+            decoded_params = Hoth::Transport::HttpTransport.decode_params(service_params)
+            Hoth::Logger.debug "decoded_params: #{decoded_params.inspect}"
+            result = Hoth::Services.send(service_name, *decoded_params)
+            json_payload   = JSON({"result" => result })
           
             [200, {'Content-Type' => 'application/json', 'Content-Length' => "#{json_payload.length}"}, json_payload]
           rescue Exception => e

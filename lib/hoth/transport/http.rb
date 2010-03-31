@@ -1,18 +1,13 @@
 require 'json'
 require 'net/http'
 
-
 module Hoth
   module Transport
     class Http < Base     
-      def call_remote_with(*args)
-        response = Net::HTTP.post_form(
-          URI.parse(self.endpoint.to_url),
-          { 'name' => self.name.to_s, 'params' => "#{args.to_json}" }
-        )
+      def call_remote_with(*params)
         
-        if return_value
-          case response
+        unless return_nothing?
+          case post_payload(params)
           when Net::HTTPSuccess
             Hoth::Logger.debug "response.body: #{response.body}"
             JSON(response.body)["result"]
@@ -26,16 +21,23 @@ module Hoth
             #TODO Handle redirects(3xx) and http errors(4xx), http information(1xx), unknown responses(xxx)
             raise NotImplementedError, "HTTP code: #{response.code}, message: #{response.message}"
           end
-        else
-          response.is_a?(Net::HTTPSuccess)
-        end
+        end       
       end
       
+      # TODO move to encoder class
       def decode_params(params)
         Hoth::Logger.debug "Original params before decode: #{params.inspect}"
         JSON.parse(params)
       rescue JSON::ParserError => jpe
         raise TransportError.wrap(jpe)
+      end
+      
+      def post_payload(payload)
+        uri = URI.parse(self.endpoint.to_url)
+        return Net::HTTP.post_form(uri,
+          'name'   => self.name.to_s,
+          'params' => payload.to_json # TODO substitute with Encoder class
+        )
       end
       
     end
