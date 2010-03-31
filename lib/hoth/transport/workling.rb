@@ -5,13 +5,10 @@ rescue LoadError
 end
 
 
-
-
-
 module Hoth
   module Transport
     
-    class WorklingTransport < HothTransport
+    class Workling < Base
       
       def call_remote_with(*args)
         topic      = SimplePublisher::Topic.new(:name => "#{self.module.name.to_s.underscore}_subscribers__#{name.to_s.underscore}")

@@ -4,7 +4,7 @@ require 'net/http'
 
 module Hoth
   module Transport
-    class HttpTransport < HothTransport     
+    class Http < Base     
       def call_remote_with(*args)
         response = Net::HTTP.post_form(
           URI.parse(self.endpoint.to_url),

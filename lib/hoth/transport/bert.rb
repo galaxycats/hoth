@@ -3,7 +3,7 @@ require 'bertrpc'
 
 module Hoth
   module Transport
-    class BertTransport < HothTransport
+    class Bert < Base
       
       class TuplePreparer
         def self.prepare(obj)
