@@ -13,7 +13,7 @@ module Hoth
     end
     
     def transport
-      @transport ||= Transport::Factory.create(endpoint.transport, self)
+      @transport ||= Transport.create(endpoint.transport, self)
     end
     
     def impl_class

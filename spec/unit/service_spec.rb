@@ -59,7 +59,7 @@ module Hoth
       service = Service.new("test_service") { |p1, p2| returns :nothing }
       service.should_receive(:endpoint).and_return(endpoint = mock("EndpointMock"))
       endpoint.should_receive(:transport).and_return(:http)
-      Hoth::Transport::Factory.should_receive(:create).with(:http, service)
+      Hoth::Transport.should_receive(:create).with(:http, service)
       service.transport
     end
   
