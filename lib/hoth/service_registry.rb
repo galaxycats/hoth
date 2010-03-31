@@ -17,20 +17,17 @@ module Hoth
       instance.locate_service(service_name)
     end
     
-    # :nodoc:
-    def add_service(service)
+    def add_service(service) # :nodoc:
       @registry[service.name.to_sym] = service
     end
     
-    # :nodoc:
-    def locate_service(service_name)
+    def locate_service(service_name) # :nodoc:
       @registry[service_name.to_sym]
     end
     
     private
       
-      # :nodoc:
-      def initialize
+      def initialize # :nodoc:
         @registry = {}
       end
   end
