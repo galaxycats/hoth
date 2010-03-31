@@ -7,9 +7,11 @@ module Hoth
           :transport_class => Transport::Http,
           :encoder => Encoding::Json
         },
-        :http => :json_via_http
+        :http => :json_via_http,
+        :workling => {
+          :transport_class => Transport::Workling
+        }
       }
-      
       
       def self.create(transport_name, service)
         new_transport_with_encoding(transport_name, service)

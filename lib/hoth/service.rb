@@ -31,14 +31,8 @@ module Hoth
     end
     
     def execute(*args)
-      if self.is_local?
-        # decoded_params = transport.decode_params(*args)
-        # result = impl_class.send(:execute, *decoded_params)
-        result = impl_class.send(:execute, *args)
-        return return_nothing? ? nil : result
-      else
-        transport.call_remote_with(*args)
-      end
+      result = self.is_local? ? impl_class.send(:execute, *args) : transport.call_remote_with(*args)
+      return return_nothing? ? nil : result
     end
     
     def return_nothing?

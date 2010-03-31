@@ -10,6 +10,12 @@ module Hoth
         transport = Base.new(service)
       end
       
+      it "should use an NoOp encoder if no encoder class was given at all" do
+        service = mock("ServiceMock")
+        transport = Base.new(service)
+        transport.encoder.should == Encoding::NoOp
+      end
+      
       it "should delegate calls to service-delegate" do
         service = mock("ServiceMock")
         service.should_receive(:name)

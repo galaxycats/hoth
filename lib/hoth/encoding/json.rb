@@ -9,7 +9,6 @@ module Hoth
           string.to_json
         end
 
-        # TODO move to encoder class
         def decode(string)
           begin
             Hoth::Logger.debug "Original params before decode: #{string.inspect}"

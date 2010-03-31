@@ -14,11 +14,7 @@ module Hoth
         connection = SimplePublisher::StarlingConnection.new(:host => endpoint.host, :port => endpoint.port)
 
         publisher = SimplePublisher::Publisher.new(:topic => topic, :connection => connection)
-        publisher.publish(args)
-      end
-      
-      def decode_params(*params)
-        params
+        publisher.publish(encoder.encode(args))
       end
       
     end

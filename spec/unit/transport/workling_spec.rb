@@ -36,13 +36,6 @@ module Hoth
         transport.call_remote_with(uid, email_address)
       end
       
-      it "should decode params from a message wrapper" do
-        params_as_message = ["uid"]
-        
-        transport = Workling.new(mock("ServiceMock"))
-        transport.decode_params(*params_as_message).should == ["uid"]
-      end
-      
     end
     
   end

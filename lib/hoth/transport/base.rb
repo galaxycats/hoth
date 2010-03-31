@@ -11,7 +11,7 @@ module Hoth
       
       def initialize(service_delegate, options = {})
         @service_delegate = service_delegate
-        @encoder = options[:encoder]
+        @encoder = options[:encoder] || Encoding::NoOp
       end
       
     end
