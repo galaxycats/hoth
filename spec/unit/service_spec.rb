@@ -42,7 +42,16 @@ module Hoth
       service.should_receive(:is_local?).and_return(true)
       service.impl_class.should_receive(:execute).with(:arg1, :arg2)
       
-      service.execute(:arg1, :arg2)
+      service.execute(:arg1, :arg2).should be(nil)
+    end
+  
+    it "should execute the service stub locally if its impl-class was found and return a value" do
+      service = Service.new("test_service") { |p1, p2| returns :value }
+      
+      service.should_receive(:is_local?).and_return(true)
+      service.impl_class.should_receive(:execute).with(:arg1, :arg2).and_return(result = mock("ResultMock"))
+      
+      service.execute(:arg1, :arg2).should be(result)
     end
   
     it "should call the remote service if impl-class does not exist" do

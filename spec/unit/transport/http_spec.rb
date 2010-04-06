@@ -9,8 +9,6 @@ module Hoth
       end
       
       it "should call a remote via http" do
-        @service_mock.should_receive(:return_nothing?).and_return(false)
-        
         params = {:first_name => "Seras", :last_name => "Victoria"}
 
         transport = Http.new(@service_mock)
@@ -37,8 +35,6 @@ module Hoth
         
         before(:each) do
           service_mock = mock("ServiceMock")
-          service_mock.should_receive(:return_nothing?).any_number_of_times.and_return(false)
-
           @params    = {:first_name => "Seras", :last_name => "Victoria"}
           encoder    = mock("JsonEncoderMock")
           @transport = Http.new(service_mock, {:encoder => encoder})

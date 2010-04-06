@@ -4,14 +4,10 @@ module Hoth
   module Transport
     class Http < Base     
       def call_remote_with(*params)
-        unless return_nothing?
-          begin
-            handle_response post_payload(params)
-          rescue Exception => e
-            raise TransportError.wrap(e)
-          end
-        else
-          return nil
+        begin
+          handle_response post_payload(params)
+        rescue Exception => e
+          raise TransportError.wrap(e)
         end
       end
       
