@@ -2,9 +2,9 @@ Hoth::Modules.define do
   service_module :statistics_module do
     env :development do
       endpoint :default do
-        host 'localhost'
-        port 3000
-        transport :json_via_http
+        host '127.0.0.1'
+        port 443
+        transport :json_via_https
       end
     end
     

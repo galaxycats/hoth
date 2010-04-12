@@ -1,5 +1,6 @@
 require 'hoth/transport/base'
 require 'hoth/transport/http'
+require 'hoth/transport/https'
 require 'hoth/transport/bert'
 require 'hoth/transport/workling'
 
@@ -15,6 +16,13 @@ module Hoth
         :encoder => Encoding::Json
       },
       :http => :json_via_http,
+
+      :json_via_https => {
+        :transport_class => Transport::Https,
+        :encoder => Encoding::Json
+      },
+      :https => :json_via_https,
+
       :workling => {
         :transport_class => Transport::Workling
       }
