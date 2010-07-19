@@ -6,12 +6,12 @@ module Hoth
         @log_provider = log_provider
       end
       
-      def init_logging!
+      def init_logging!(logfile="log/hoth.log")
         Hoth::Logger.log_provider = if Object.const_defined?("Rails")
           Rails.logger
         else
           require 'logger'
-          ::Logger.new("/tmp/hoth.log")
+          ::Logger.new(logfile)
         end
       end
       
