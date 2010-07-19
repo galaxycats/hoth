@@ -11,4 +11,10 @@ module Hoth
 
   class TransportError < HothException; end
   class TransportException < HothException; end
+
+  class EncodingError < HothException; end
+
+  class EmptyServiceNameError < HothException; end
+  class ServiceNotFoundException < HothException; end
+
 end
