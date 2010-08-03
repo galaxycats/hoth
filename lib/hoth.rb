@@ -18,6 +18,8 @@ require 'hoth/util/logger'
 require 'hoth/extension/core/exception'
 require 'hoth/exceptions'
 
+require 'digest/sha1'
+
 module Hoth
   
   class <<self
@@ -25,6 +27,11 @@ module Hoth
       load_service_definition
       load_module_definition
       Logger.init_logging!
+      @client_uuid = Digest::SHA1.hexdigest("Time.now--#{rand()}")
+    end
+
+    def client_uuid
+      @client_uuid
     end
   
     def config_path

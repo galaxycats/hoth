@@ -17,4 +17,5 @@ module Hoth
   class EmptyServiceNameError < HothException; end
   class ServiceNotFoundException < HothException; end
 
+  class RecursiveServiceCallException < HothException; end
 end

@@ -10,8 +10,9 @@ module Hoth
         post = Net::HTTP::Post.new(uri.path)
         
         post.set_form_data({
-            'name'   => self.name.to_s,
-            'params' => encoder.encode(payload)
+            'name'        => self.name.to_s,
+            'caller_uuid' => Hoth.client_uuid,
+            'params'      => encoder.encode(payload)
         }, ';')
         
         request = Net::HTTP.new(uri.host, uri.port)

@@ -31,8 +31,9 @@ module Hoth
       def post_payload(payload)
         uri = URI.parse(self.endpoint.to_url)
         return Net::HTTP.post_form(uri,
-          'name'   => self.name.to_s,
-          'params' => encoder.encode(payload)
+          'name'        => self.name.to_s,
+          'caller_uuid' => Hoth.client_uuid,
+          'params'      => encoder.encode(payload)
         )
       end
       
