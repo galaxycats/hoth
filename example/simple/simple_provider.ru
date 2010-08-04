@@ -26,5 +26,5 @@ end
 
 # here we go!
 app = lambda {|env| [200, {'Content-Type' => 'application/json'}, ["body"]]}
-rack_thread = Thread.new { run Hoth::Providers::RackProvider.new(app) }
-rack_thread.join
+run Hoth::Providers::RackProvider.new(app)
+
