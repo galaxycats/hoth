@@ -4,8 +4,8 @@ module Hoth
   module Providers
     class RackProvider
 
-      def initialize(app)
-        @app = app
+      def initialize(app=nil)
+        @app = app || lambda {|env| [404, {'Content-Type' => "text/plain"}, ["Nothing here!"]]}
       end
 
       def call(env)
