@@ -3,5 +3,4 @@
 coverage
 rdoc
 pkg
-hoth.gemspec
 .rake_tasks
