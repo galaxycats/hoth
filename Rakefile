@@ -11,7 +11,7 @@ Creating a SOA requires a centralized location to define all services within the
 SOA. Furthermore you want to know where to deploy those services.
 DESCRIPTION
     gem.email = "dirk.breuer@gmail.com"
-    gem.homepage = "http://github.com/railsbros/hoth"
+    gem.homepage = "http://github.com/galaxycats/hoth"
     gem.authors = ["Dirk Breuer"]
     gem.files = FileList["[A-Z]*.*", "{lib,spec}/**/*"]
 
