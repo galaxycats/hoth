@@ -10,6 +10,7 @@ module Hoth
     describe RackProvider do
       
       it "should get transport and encoder based on called service" do
+        Hoth.should_receive(:client_uuid).and_return("CALLER_UUID")
         app = stub("ApplicationStub").as_null_object
         middleware = Hoth::Providers::RackProvider.new(app)
         
@@ -40,7 +41,7 @@ module Hoth
         rack_response = middleware.call env
         rack_response.first.should == 500 #status code
         rack_response.last.should be_a_kind_of(Array)
-        rack_response.last.first.should == "An error occuered! (RuntimeError)"
+        rack_response.last.first.should == "An error occurred! (RuntimeError)"
       end
       
     end

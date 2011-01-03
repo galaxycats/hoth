@@ -17,6 +17,7 @@ module Hoth
       end
 
       it "should post payload encoded with JSON" do
+        Hoth.should_receive(:client_uuid).and_return("CLIENT_UUID")
         @service_mock.should_receive(:endpoint).and_return(endpoint = mock("EndpointMock"))
         @service_mock.should_receive(:name).and_return("service_name")
         endpoint.should_receive(:to_url).and_return("http://localhost:3000/execute")
@@ -25,7 +26,7 @@ module Hoth
         encoder.should_receive(:encode).with("params").and_return("encoded_params")
 
         URI.should_receive(:parse).with("http://localhost:3000/execute").and_return(uri = mock("URIMock"))
-        Net::HTTP.should_receive(:post_form).with(uri, {"name" => "service_name", "params" => "encoded_params"})
+        Net::HTTP.should_receive(:post_form).with(uri, {"name" => "service_name", "params" => "encoded_params", "caller_uuid" => "CLIENT_UUID"})
 
         transport = Http.new(@service_mock, {:encoder => encoder})
         transport.post_payload("params")
