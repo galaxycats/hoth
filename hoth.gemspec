@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hoth}
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirk Breuer"]
-  s.date = %q{2010-08-04}
+  s.date = %q{2011-01-03}
   s.description = %q{Creating a SOA requires a centralized location to define all services within the
 SOA. Furthermore you want to know where to deploy those services.
 }
@@ -20,7 +20,8 @@ SOA. Furthermore you want to know where to deploy those services.
      "TODO"
   ]
   s.files = [
-    "README.rdoc",
+    "Gemfile.lock",
+     "README.rdoc",
      "THANKS.md",
      "lib/hoth.rb",
      "lib/hoth/encoding/json.rb",
@@ -57,7 +58,7 @@ SOA. Furthermore you want to know where to deploy those services.
      "spec/unit/transport/workling_spec.rb",
      "spec/unit/transport_spec.rb"
   ]
-  s.homepage = %q{http://github.com/railsbros/hoth}
+  s.homepage = %q{http://github.com/galaxycats/hoth}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
