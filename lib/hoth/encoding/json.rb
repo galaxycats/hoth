@@ -5,8 +5,8 @@ module Hoth
     class Json
       
       class <<self
-        def encode(string)
-          string.to_json
+        def encode(object)
+          object.to_json
         end
 
         def decode(string)
