@@ -11,6 +11,10 @@ module Hoth
     def self.module(module_name)
       instance.service_modules[module_name]
     end
+
+    def self.service_modules
+      instance.service_modules
+    end
     
     def service_module(module_name, &block)
       service_module = ServiceModule.new(:name => module_name)

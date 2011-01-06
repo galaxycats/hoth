@@ -3,6 +3,7 @@ require 'hoth/transport/http'
 require 'hoth/transport/https'
 require 'hoth/transport/bert'
 require 'hoth/transport/workling'
+require 'hoth/transport/beanstalkd'
 
 require 'hoth/encoding/json'
 require 'hoth/encoding/no_op'
@@ -25,6 +26,11 @@ module Hoth
 
       :workling => {
         :transport_class => Transport::Workling
+      },
+
+      :beanstalkd => {
+        :transport_class => Transport::Beanstalkd,
+        :encoder => Encoding::Json
       }
     }
     

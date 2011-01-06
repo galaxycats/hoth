@@ -1,6 +1,5 @@
 module Hoth
   class ServiceModule
-    attr_accessor :name, :environments
 
     class Environment
       attr_accessor :endpoints
@@ -19,8 +18,11 @@ module Hoth
       end
     end
     
+    attr_accessor :name, :environments, :registered_services
+
     def initialize(attributes = {})
       @environments = {}
+      @registered_services = []
       @name = attributes[:name]
     end
     
@@ -39,6 +41,8 @@ module Hoth
       
       service.module = self
       service.via_endpoint(options[:via])
+
+      @registered_services << service
     end
     
     def [](env_name)
