@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hoth}
-  s.version = "0.3.2.beta1"
+  s.version = "0.3.2.beta2"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirk Breuer"]
-  s.date = %q{2011-01-06}
+  s.date = %q{2011-01-07}
   s.description = %q{Creating a SOA requires a centralized location to define all services within the
 SOA. Furthermore you want to know where to deploy those services.
 }
@@ -63,7 +63,7 @@ SOA. Furthermore you want to know where to deploy those services.
   s.homepage = %q{http://github.com/galaxycats/hoth}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.7}
+  s.rubygems_version = %q{1.4.1}
   s.summary = %q{Registry and deployment description abstraction for SOA-Services}
   s.test_files = [
     "spec/spec_helper.rb",
@@ -82,7 +82,6 @@ SOA. Furthermore you want to know where to deploy those services.
   ]
 
   if s.respond_to? :specification_version then
-    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
