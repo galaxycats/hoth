@@ -22,7 +22,7 @@ module Hoth
         EM.run {
           @services_to_listen_for.each do |service|
             conn_for_service = EMJack::Connection.new(:host => service.endpoint.host, :port => service.endpoint.port)
-            conn_for_service.watch("#{service.endpoint.module_name}/#{service.name}")
+            conn_for_service.watch(service.transport.tube_name)
             conn_for_service.each_job do |job|
               responsible_service = ServiceRegistry.locate_service(service.name)
 

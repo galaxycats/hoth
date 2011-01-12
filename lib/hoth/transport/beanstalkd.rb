@@ -11,11 +11,15 @@ module Hoth
 
       def call_remote_with(*args)
         connection = Beanstalk::Pool.new(["#{endpoint.host}:#{endpoint.port}"])
-        connection.use("#{self.module.name}/#{name}")
+        connection.use(tube_name)
 
         encoded_args = encoder.encode(args)
         Rails.logger.debug "encoded_args: #{encoded_args}"
         connection.put encoded_args
+      end
+
+      def tube_name
+        @tube_name ||= "#{self.module.name}/#{name}"
       end
       
     end
