@@ -19,7 +19,7 @@ module Hoth
       end
 
       def tube_name
-        @tube_name ||= "#{self.module.name}/#{name}"
+        @tube_name ||= "#{self.module.name}/#{name}".dasherize
       end
       
     end
