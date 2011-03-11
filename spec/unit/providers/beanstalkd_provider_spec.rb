@@ -28,8 +28,8 @@ module Hoth
         service.stub_chain(:endpoint, :transport).and_return :beanstalkd
         foo_module.should_receive(:registered_services).and_return([service])
         Hoth::Modules.should_receive(:service_modules).and_return({
-          :mail_module => [mail_module],
-          :foo_module => [foo_module]
+          :mail_module => mail_module,
+          :foo_module => foo_module
         })
         beanstalkd_provider = Hoth::Providers::BeanstalkdProvider.new("foo_module")
       end

@@ -44,11 +44,8 @@ module Hoth
       private
         
         def identify_services_to_listen_for
-          @services_to_listen_for = Hoth::Modules.service_modules[self.module_name.to_sym].inject([]) do |services, service_module|
-            services << service_module.registered_services.select do |service|
+          @services_to_listen_for = Hoth::Modules.service_modules[self.module_name.to_sym].registered_services.select do |service|
               service.endpoint.transport == :beanstalkd
-            end
-            services.flatten
           end
         end
 
