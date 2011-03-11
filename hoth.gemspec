@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hoth}
-  s.version = "0.3.2.beta4"
+  s.version = "0.3.2.beta5"
 
   s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dirk Breuer"]
-  s.date = %q{2011-01-12}
+  s.date = %q{2011-03-11}
   s.description = %q{Creating a SOA requires a centralized location to define all services within the
 SOA. Furthermore you want to know where to deploy those services.
 }
@@ -51,6 +51,7 @@ SOA. Furthermore you want to know where to deploy those services.
      "spec/unit/endpoint_spec.rb",
      "spec/unit/extension/core/exception_spec.rb",
      "spec/unit/hoth_spec.rb",
+     "spec/unit/providers/beanstalkd_provider_spec.rb",
      "spec/unit/providers/rack_provider_spec.rb",
      "spec/unit/service_definition_spec.rb",
      "spec/unit/service_module_spec.rb",
@@ -63,7 +64,7 @@ SOA. Furthermore you want to know where to deploy those services.
   s.homepage = %q{http://github.com/galaxycats/hoth}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.4.1}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{Registry and deployment description abstraction for SOA-Services}
   s.test_files = [
     "spec/spec_helper.rb",
@@ -71,6 +72,7 @@ SOA. Furthermore you want to know where to deploy those services.
      "spec/unit/endpoint_spec.rb",
      "spec/unit/extension/core/exception_spec.rb",
      "spec/unit/hoth_spec.rb",
+     "spec/unit/providers/beanstalkd_provider_spec.rb",
      "spec/unit/providers/rack_provider_spec.rb",
      "spec/unit/service_definition_spec.rb",
      "spec/unit/service_module_spec.rb",
@@ -82,9 +84,10 @@ SOA. Furthermore you want to know where to deploy those services.
   ]
 
   if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_runtime_dependency(%q<bertrpc>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
