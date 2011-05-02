@@ -9,11 +9,9 @@ module Hoth
       end
 
       def call(env)
-        Hoth::Logger.debug "env: #{env.inspect}"
         if env["PATH_INFO"] =~ /^\/execute/
           begin
             req = Rack::Request.new(env)
-            Hoth::Logger.debug "req: #{req.inspect}"
 
             service_name   = req.params["name"]
             service_params = req.params["params"]
