@@ -72,6 +72,10 @@ SOA. Furthermore you want to know where to deploy those services.
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<hoth>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.6.0"])
+      s.add_development_dependency(%q<simple_publisher>, [">= 0"])
+      s.add_development_dependency(%q<beanstalk-client>, [">= 0"])
+      s.add_development_dependency(%q<em-jack>, [">= 0"])
       s.add_runtime_dependency(%q<activesupport>, [">= 0"])
       s.add_runtime_dependency(%q<bertrpc>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
@@ -81,6 +85,10 @@ SOA. Furthermore you want to know where to deploy those services.
       s.add_development_dependency(%q<em-jack>, [">= 0"])
     else
       s.add_dependency(%q<hoth>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.6.0"])
+      s.add_dependency(%q<simple_publisher>, [">= 0"])
+      s.add_dependency(%q<beanstalk-client>, [">= 0"])
+      s.add_dependency(%q<em-jack>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<bertrpc>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
@@ -91,6 +99,10 @@ SOA. Furthermore you want to know where to deploy those services.
     end
   else
     s.add_dependency(%q<hoth>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.6.0"])
+    s.add_dependency(%q<simple_publisher>, [">= 0"])
+    s.add_dependency(%q<beanstalk-client>, [">= 0"])
+    s.add_dependency(%q<em-jack>, [">= 0"])
     s.add_dependency(%q<activesupport>, [">= 0"])
     s.add_dependency(%q<bertrpc>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
