@@ -19,7 +19,7 @@ DESCRIPTION
     gem.add_dependency "bertrpc"
     gem.add_dependency "json"
     
-    gem.add_development_dependency "rspec"
+    gem.add_development_dependency "rspec", "~> 2.6.0"
     gem.add_development_dependency "simple_publisher"
     gem.add_development_dependency "beanstalk-client"
     gem.add_development_dependency "em-jack"
@@ -28,6 +28,8 @@ DESCRIPTION
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
+
+Jeweler::RubygemsDotOrgTasks.new
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
@@ -40,8 +42,6 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.pattern = 'spec/**/*_spec.rb'
   spec.rcov = true
 end
-
-task :spec => :check_dependencies
 
 task :default => :spec
 

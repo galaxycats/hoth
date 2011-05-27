@@ -10,12 +10,18 @@ module Hoth
     class Beanstalkd < Base
 
       def call_remote_with(*args)
-        connection = Beanstalk::Pool.new(["#{endpoint.host}:#{endpoint.port}"])
+        connection = Beanstalk::Connection.new("#{endpoint.host}:#{endpoint.port}")
         connection.use(tube_name)
 
-        encoded_args = encoder.encode(args)
-        Rails.logger.debug "encoded_args: #{encoded_args}"
-        connection.put encoded_args
+        begin
+          encoded_args = encoder.encode(args)
+          Hoth::Logger.debug "encoded_args: #{encoded_args}"
+          connection.put encoded_args
+        rescue => e
+          Hoth::Logger.warn "An error occured while sending a payload to beanstalkd: #{e.message}"
+        ensure
+          connection.close
+        end
       end
 
       def tube_name
