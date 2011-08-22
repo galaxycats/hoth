@@ -6,6 +6,11 @@ describe Exception do
     e = Exception.new "message"
     e.to_json.should == "{\"json_class\":\"Exception\",\"message\":\"message\",\"backtrace\":null}"
   end
+
+  it "should be able to create a json encodable representation of the exception" do
+    e = Exception.new "message"
+    e.as_json.should == {"json_class" => "Exception", "message" => "message", "backtrace" => nil}
+  end
   
   it "should be able to create json with backtrace" do
     e = Exception.new "message"
