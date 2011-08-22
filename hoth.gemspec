@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{hoth}
-  s.version = "0.3.3"
+  s.version = "0.3.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Dirk Breuer}]
-  s.date = %q{2011-05-27}
+  s.authors = ["Dirk Breuer"]
+  s.date = %q{2011-08-22}
   s.description = %q{Creating a SOA requires a centralized location to define all services within the
 SOA. Furthermore you want to know where to deploy those services.
 }
@@ -63,15 +63,36 @@ SOA. Furthermore you want to know where to deploy those services.
     "spec/unit/transport_spec.rb"
   ]
   s.homepage = %q{http://github.com/galaxycats/hoth}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.4}
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Registry and deployment description abstraction for SOA-Services}
+  s.test_files = [
+    "spec/spec_helper.rb",
+    "spec/unit/encoding/json_spec.rb",
+    "spec/unit/endpoint_spec.rb",
+    "spec/unit/extension/core/exception_spec.rb",
+    "spec/unit/hoth_spec.rb",
+    "spec/unit/providers/beanstalkd_provider_spec.rb",
+    "spec/unit/providers/rack_provider_spec.rb",
+    "spec/unit/service_definition_spec.rb",
+    "spec/unit/service_module_spec.rb",
+    "spec/unit/service_spec.rb",
+    "spec/unit/transport/base_spec.rb",
+    "spec/unit/transport/beanstalkd_spec.rb",
+    "spec/unit/transport/http_spec.rb",
+    "spec/unit/transport/workling_spec.rb",
+    "spec/unit/transport_spec.rb"
+  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<hoth>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.6.0"])
+      s.add_development_dependency(%q<simple_publisher>, [">= 0"])
+      s.add_development_dependency(%q<beanstalk-client>, [">= 0"])
+      s.add_development_dependency(%q<em-jack>, [">= 0"])
       s.add_development_dependency(%q<rspec>, ["~> 2.6.0"])
       s.add_development_dependency(%q<simple_publisher>, [">= 0"])
       s.add_development_dependency(%q<beanstalk-client>, [">= 0"])
@@ -89,6 +110,10 @@ SOA. Furthermore you want to know where to deploy those services.
       s.add_dependency(%q<simple_publisher>, [">= 0"])
       s.add_dependency(%q<beanstalk-client>, [">= 0"])
       s.add_dependency(%q<em-jack>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.6.0"])
+      s.add_dependency(%q<simple_publisher>, [">= 0"])
+      s.add_dependency(%q<beanstalk-client>, [">= 0"])
+      s.add_dependency(%q<em-jack>, [">= 0"])
       s.add_dependency(%q<activesupport>, [">= 0"])
       s.add_dependency(%q<bertrpc>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
@@ -99,6 +124,10 @@ SOA. Furthermore you want to know where to deploy those services.
     end
   else
     s.add_dependency(%q<hoth>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.6.0"])
+    s.add_dependency(%q<simple_publisher>, [">= 0"])
+    s.add_dependency(%q<beanstalk-client>, [">= 0"])
+    s.add_dependency(%q<em-jack>, [">= 0"])
     s.add_dependency(%q<rspec>, ["~> 2.6.0"])
     s.add_dependency(%q<simple_publisher>, [">= 0"])
     s.add_dependency(%q<beanstalk-client>, [">= 0"])
