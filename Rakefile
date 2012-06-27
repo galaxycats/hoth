@@ -16,7 +16,6 @@ DESCRIPTION
     gem.files = FileList["[A-Z]*.*", "{lib,spec}/**/*"]
 
     gem.add_dependency "activesupport"
-    gem.add_dependency "bertrpc"
     gem.add_dependency "json"
     
     gem.add_development_dependency "rspec", "~> 2.6.0"

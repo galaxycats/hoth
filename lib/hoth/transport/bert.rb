@@ -1,5 +1,10 @@
-require 'bert'
-require 'bertrpc'
+begin
+  require 'bert'
+  require 'bertrpc'
+rescue LoadError
+  STDERR.puts "You need the 'bertrpc' gem if you want to use Bert transport."
+end
+
 
 module Hoth
   module Transport
