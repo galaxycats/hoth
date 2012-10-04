@@ -9,8 +9,14 @@ module Hoth
 
     class Beanstalkd < Base
 
+      attr_reader :connection
+
+      def initialize(*args)
+        super
+        @connection = Beanstalk::Connection.new("#{endpoint.host}:#{endpoint.port}")
+      end
+
       def call_remote_with(*args)
-        connection = Beanstalk::Connection.new("#{endpoint.host}:#{endpoint.port}")
         connection.use(tube_name)
 
         begin
@@ -19,16 +25,14 @@ module Hoth
           connection.put encoded_args
         rescue => e
           Hoth::Logger.warn "An error occured while sending a payload to beanstalkd: #{e.message}"
-        ensure
-          connection.close
         end
       end
 
       def tube_name
         @tube_name ||= "#{self.module.name}/#{name}".dasherize
       end
-      
+
     end
-    
+
   end
 end

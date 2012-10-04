@@ -1,5 +1,7 @@
 require 'singleton'
 
+require 'hoth/version'
+
 require 'active_support/inflector'
 
 # must be loaded after alls transports and all encodings

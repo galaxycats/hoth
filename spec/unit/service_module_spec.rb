@@ -40,7 +40,7 @@ module Hoth
     describe ServiceModule::Environment do
 
       it "should have an endpoint" do
-        endpoint_mock = mock("Endpoint", :null_object => true)
+        endpoint_mock = mock("Endpoint").as_null_object
       
         endpoint_block = Proc.new do
           endpoint :development do

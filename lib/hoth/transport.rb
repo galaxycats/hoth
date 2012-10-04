@@ -1,8 +1,6 @@
 require 'hoth/transport/base'
 require 'hoth/transport/http'
 require 'hoth/transport/https'
-require 'hoth/transport/bert'
-require 'hoth/transport/workling'
 require 'hoth/transport/beanstalkd'
 
 require 'hoth/encoding/json'
@@ -23,10 +21,6 @@ module Hoth
         :encoder => Encoding::Json
       },
       :https => :json_via_https,
-
-      :workling => {
-        :transport_class => Transport::Workling
-      },
 
       :beanstalkd => {
         :transport_class => Transport::Beanstalkd,
