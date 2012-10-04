@@ -43,11 +43,6 @@ After defining all you services, you need to specify in which modules they live.
             transport :http
           end
 
-          endpoint :bert do
-            host 'localhost'
-            port 9999
-            transport :bert
-          end
         end
 
         env :production do
@@ -57,15 +52,15 @@ After defining all you services, you need to specify in which modules they live.
             transport :http
           end
 
-          endpoint :bert do
+          endpoint :beanstalk do
             host '192.168.1.15'
-            port 9999
-            transport :bert
+            port 11300
+            transport :beanstalkd
           end
         end
 
         add_service :first_service
-        add_service :second_service, :via => :bert
+        add_service :second_service, :via => :beanstalk
       end
 
     end

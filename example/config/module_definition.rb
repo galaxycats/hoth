@@ -20,13 +20,13 @@ Hoth::Modules.define do
         transport :http
       end
     
-      endpoint :bert do
+      endpoint :beanstalk do
         host 'localhost'
-        port 9999
-        transport :bert
+        port 11300
+        transport :beanstalkd
       end
     end
     
-    add_service :create_account, :via => :bert
+    add_service :create_account, :via => :beanstalk
   end
 end

@@ -29,7 +29,6 @@ SOA. Furthermore you want to know where to deploy those services.
   gem.add_development_dependency "rake"
   gem.add_development_dependency "em-jack"
   gem.add_development_dependency "beanstalk-client"
-  gem.add_development_dependency "bertrpc", ">= 0"
   gem.add_development_dependency "yard"
   gem.add_development_dependency "redcarpet"
 end

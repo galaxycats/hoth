@@ -1,7 +1,6 @@
 require 'hoth/transport/base'
 require 'hoth/transport/http'
 require 'hoth/transport/https'
-require 'hoth/transport/bert'
 require 'hoth/transport/beanstalkd'
 
 require 'hoth/encoding/json'
