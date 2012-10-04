@@ -21,7 +21,7 @@ SOA. Furthermore you want to know where to deploy those services.
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency "hoth", ">= 0"
-  gem.add_runtime_dependency "activesupport", "~> 3.0"
+  gem.add_runtime_dependency "activesupport"
   gem.add_runtime_dependency "json", ">= 0"
   gem.add_runtime_dependency "rack"
 
