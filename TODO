@@ -1,2 +1,0 @@
-* Make the rack provider independent from one specific transport.
-* Make the bodies of the rack_provider return an object which responds to each in order not break on Ruby 1.9.
